@@ -34,5 +34,19 @@ public class BabysitterTest extends TestCase {
         }
     }
 
+    public void testEndTimeCannotBeBeforeStartTime() {
+        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 17, 0);
+        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 4, 0);
+        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 2, 0, 0);
+
+        try {
+            Babysitter.getRate(startTime, endTime, bedTime);
+            fail("Should throw an exception if end time is before start time");
+        } catch (Exception e){
+            assert(e instanceof Exception);
+            assertEquals("End time must be after start time", e.getMessage());
+        }
+    }
+
 
 }

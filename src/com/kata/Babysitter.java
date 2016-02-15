@@ -18,6 +18,9 @@ public class Babysitter {
         if ( endTime.get(Calendar.HOUR_OF_DAY) > 4 )
             throw new Exception("End time must be before 4:00 AM");
 
+        if ( endTime.before(startTime) )
+            throw new Exception("End time must be after start time");
+
         return total;
     }
 
