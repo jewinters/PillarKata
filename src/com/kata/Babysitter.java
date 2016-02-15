@@ -37,6 +37,9 @@ public class Babysitter {
         if ( endTime.before(startTime) || endHour > LATEST_END_HOUR || endHour < EARLIEST_START_HOUR )
             throw new Exception("End time must be before start time and between 5:00 PM and 4:00 AM");
 
+        //Edge case where End Time can be in the afternoon when Start Time is in the morning.
+        if ( startHour > endHour )
+            throw new Exception("Time cannot include midday hours");
 
         for (int hour = startHour; hour < endHour; hour++) {
             total += getHourlyRate(hour, bedHour);

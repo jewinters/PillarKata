@@ -92,5 +92,17 @@ public class BabysitterTest extends TestCase {
         }
     }
 
+    public void testTimeIncludesDaytimeHoursThrowsEndTimeException() {
+        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 4, 0);
+        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 18, 0);
+        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 1, 0, 0);
+        try {
+            Babysitter.getRate(startTime, endTime, bedTime);
+            fail("Should throw an exception if time includes hours between 4:00 AM and 5:00 PM");
+        } catch (Exception e) {
+            assert(e instanceof Exception);
+            assertEquals("Time cannot include midday hours", e.getMessage());
+        }
+    }
 
 }
