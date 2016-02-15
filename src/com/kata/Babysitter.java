@@ -7,6 +7,8 @@ import java.util.Calendar;
  */
 public class Babysitter {
 
+    private static final int MIDNIGHT = 24;
+
     public static int getRate(Calendar startTime, Calendar endTime, Calendar bedTime) throws Exception {
 
         int startHour, endHour, bedHour;
@@ -28,10 +30,7 @@ public class Babysitter {
 
 
         for (int hour = startHour; hour < endHour; hour++) {
-            if (hour < bedHour )
-                total += 12;
-            if (hour >= bedHour )
-                total += 8;
+            total += getHourlyRate(hour, bedHour);
         }
 
         return total;
@@ -44,5 +43,14 @@ public class Babysitter {
             hourOfDay += 24;
 
         return hourOfDay;
+    }
+
+    private static int getHourlyRate(int hour, int bedHour) {
+        if (hour < bedHour)
+            return 12;
+        if (hour < MIDNIGHT)
+            return 8;
+        return 16;
+
     }
 }

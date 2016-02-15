@@ -70,5 +70,15 @@ public class BabysitterTest extends TestCase {
         }
     }
 
+    public void testMidnightToEndTimeReturns16PerHour() {
+        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 0, 0);
+        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 1, 0);
+        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 1, 0, 0);
+        try {
+            assertEquals(16, Babysitter.getRate(startTime, endTime, bedTime));
+        } catch (Exception e) {
+            fail("Should not throw an exception");
+        }
+    }
 
 }
