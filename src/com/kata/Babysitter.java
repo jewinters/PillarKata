@@ -16,14 +16,16 @@ public class Babysitter {
     private static final int MIDNIGHT = 24;
     private static final int HOURS_IN_DAY = 24;
 
+    private static final boolean ROUND_UP = true;
+
     public static int getRate(Calendar startTime, Calendar endTime, Calendar bedTime) throws Exception {
 
         int startHour, endHour, bedHour;
 
         //Turn our Calendars into integer-based hours for ease of use.
         startHour = getHourOfDay(startTime);
-        endHour = getHourOfDay(endTime);
-        bedHour = getHourOfDay(bedTime);
+        endHour = getHourOfDay(endTime, ROUND_UP);
+        bedHour = getHourOfDay(bedTime, ROUND_UP);
 
         int total = 0;
 
@@ -44,10 +46,17 @@ public class Babysitter {
     }
 
     private static int getHourOfDay(Calendar time) {
+        return getHourOfDay(time, false);
+    }
+
+    private static int getHourOfDay(Calendar time, Boolean roundUp) {
         int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
 
         if ( time.get(Calendar.HOUR_OF_DAY) <= (LATEST_END_HOUR - HOURS_IN_DAY) )
             hourOfDay += HOURS_IN_DAY;
+
+        if ( roundUp && time.get(Calendar.MINUTE) > 0 )
+            hourOfDay++;
 
         return hourOfDay;
     }
