@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a7219108-cdef-4924-80aa-67d5bd1b29d6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PillarKata/com/kata/Babysitter.class" afterPath="$PROJECT_DIR$/out/production/PillarKata/com/kata/Babysitter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/PillarKata/com/kata/BabysitterTest.class" afterPath="$PROJECT_DIR$/out/production/PillarKata/com/kata/BabysitterTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/kata/Babysitter.java" afterPath="$PROJECT_DIR$/src/com/kata/Babysitter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/kata/BabysitterTest.java" afterPath="$PROJECT_DIR$/src/com/kata/BabysitterTest.java" />
     </list>
@@ -38,8 +41,8 @@
       <file leaf-file-name="BabysitterTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/kata/BabysitterTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9484536">
-              <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.81958765">
+              <caret line="112" column="27" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -51,10 +54,10 @@
         <entry file="file://$PROJECT_DIR$/src/com/kata/Babysitter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+              <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
               <folding>
-                <element signature="e#1818#1819#0" expanded="true" />
-                <element signature="e#1866#1867#0" expanded="true" />
+                <element signature="e#1938#1939#0" expanded="true" />
+                <element signature="e#1986#1987#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -607,9 +610,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="BabysitterTest - 2016.02.15 at 18h 31m 00s.xml">
-      <configuration name="BabysitterTest" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="BabysitterTest - 2016.02.15 at 18h 33m 24s.xml">
       <configuration name="BabysitterTest" configurationId="JUnit" />
     </history-entry>
@@ -634,8 +634,11 @@
     <history-entry file="BabysitterTest - 2016.02.15 at 18h 51m 51s.xml">
       <configuration name="BabysitterTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BabysitterTest_testBedTimeToMidnightReturns8PerHour - 2016.02.15 at 18h 30m 32s.xml">
-      <configuration name="BabysitterTest.testBedTimeToMidnightReturns8PerHour" configurationId="JUnit" />
+    <history-entry file="BabysitterTest - 2016.02.15 at 18h 57m 09s.xml">
+      <configuration name="BabysitterTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BabysitterTest - 2016.02.15 at 18h 59m 06s.xml">
+      <configuration name="BabysitterTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -715,18 +718,18 @@
     <entry file="file://$PROJECT_DIR$/src/com/kata/Babysitter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+          <caret line="43" column="52" selection-start-line="43" selection-start-column="52" selection-end-line="43" selection-end-column="52" />
           <folding>
-            <element signature="e#1818#1819#0" expanded="true" />
-            <element signature="e#1866#1867#0" expanded="true" />
+            <element signature="e#1938#1939#0" expanded="true" />
+            <element signature="e#1986#1987#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/kata/BabysitterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9484536">
-          <caret line="106" column="0" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.81958765">
+          <caret line="112" column="27" selection-start-line="112" selection-start-column="27" selection-end-line="112" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
