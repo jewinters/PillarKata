@@ -17,7 +17,7 @@ public class BabysitterTest extends TestCase {
             fail("Should throw an exception if start time is before 5:00 PM");
         } catch (Exception e) {
             assert (e instanceof Exception);
-            assertEquals("Start time must be after 5:00 PM", e.getMessage());
+            assertEquals("Start time must be after 5:00 PM and before 4:00 AM", e.getMessage());
         }
     }
 
@@ -30,7 +30,7 @@ public class BabysitterTest extends TestCase {
             fail("Should throw an exception if end time is after 4:00 AM");
         } catch (Exception e){
             assert(e instanceof Exception);
-            assertEquals("End time must be before 4:00 AM", e.getMessage());
+            assertEquals("End time must be before start time and between 5:00 PM and 4:00 AM", e.getMessage());
         }
     }
 
@@ -44,7 +44,18 @@ public class BabysitterTest extends TestCase {
             fail("Should throw an exception if end time is before start time");
         } catch (Exception e){
             assert(e instanceof Exception);
-            assertEquals("End time must be after start time", e.getMessage());
+            assertEquals("End time must be before start time and between 5:00 PM and 4:00 AM", e.getMessage());
+        }
+    }
+
+    public void testStartToBedTimeReturns12PerHour() {
+        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 17, 0);
+        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 18, 0);
+        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 1, 18, 0);
+        try {
+            assertEquals(12, Babysitter.getRate(startTime, endTime, bedTime));
+        } catch (Exception e) {
+            fail("Should not throw an exception");
         }
     }
 

@@ -19,18 +19,28 @@ public class Babysitter {
         int total = 0;
 
         //Start Time must be after 5:00 PM, but it could also be prior to 4:00 AM.
-        if ( startHour < 17 )
-            throw new Exception("Start time must be after 5:00 PM");
+        if ( startHour < 17 || startHour > 28 )
+            throw new Exception("Start time must be after 5:00 PM and before 4:00 AM");
 
         //End time must be before 4:00 AM
-        if ( endHour > 4 )
-            throw new Exception("End time must be before 4:00 AM");
+        if ( endTime.before(startTime) || endHour > 28 || endHour < 17 )
+            throw new Exception("End time must be before start time and between 5:00 PM and 4:00 AM");
 
-        //End time must be after start time. This addresses issues where end time is < 5:00 PM or start time > 4:00 AM
-        if ( endTime.before(startTime) )
-            throw new Exception("End time must be after start time");
+
+        for (int hour = startHour; hour < endHour; hour++) {
+            if (hour < bedHour )
+                total += 12;
+        }
 
         return total;
     }
 
+    private static int getHourOfDay(Calendar time) {
+        int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
+
+        if (time.get(Calendar.HOUR_OF_DAY) <= 4)
+            hourOfDay += 24;
+
+        return hourOfDay;
+    }
 }
