@@ -12,9 +12,9 @@ public class Babysitter {
         int startHour, endHour, bedHour;
 
         //Turn our Calendars into integer-based hours for ease of use.
-        startHour = startTime.get(Calendar.HOUR_OF_DAY);
-        endHour = endTime.get(Calendar.HOUR_OF_DAY);
-        bedHour = bedTime.get(Calendar.HOUR_OF_DAY);
+        startHour = getHourOfDay(startTime);
+        endHour = getHourOfDay(endTime);
+        bedHour = getHourOfDay(bedTime);
 
         int total = 0;
 
@@ -30,6 +30,8 @@ public class Babysitter {
         for (int hour = startHour; hour < endHour; hour++) {
             if (hour < bedHour )
                 total += 12;
+            if (hour >= bedHour )
+                total += 8;
         }
 
         return total;
