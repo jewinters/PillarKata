@@ -41,6 +41,10 @@ public class Babysitter {
         if ( startHour > endHour )
             throw new Exception("Time cannot include midday hours");
 
+        //Edge case where bed time is after midnight
+        if ( bedHour > MIDNIGHT )
+            bedHour = MIDNIGHT;
+
         for (int hour = startHour; hour < endHour; hour++) {
             total += getHourlyRate(hour, bedHour);
         }
