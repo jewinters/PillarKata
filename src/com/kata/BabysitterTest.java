@@ -3,9 +3,6 @@ package com.kata;
 import junit.framework.*;
 import java.util.GregorianCalendar;
 
-/**
- * Created by jwinters on 2/15/16.
- */
 public class BabysitterTest extends TestCase {
 
     public void testStartTimeCannotBeEarlierThanFivePM() {
@@ -36,7 +33,7 @@ public class BabysitterTest extends TestCase {
 
     public void testEndTimeCannotBeBeforeStartTime() {
         GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 17, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 4, 0);
+        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 16, 0);
         GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 2, 0, 0);
 
         try {
@@ -115,5 +112,4 @@ public class BabysitterTest extends TestCase {
             fail("Should not throw an exception");
         }
     }
-
 }

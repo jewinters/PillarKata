@@ -2,9 +2,6 @@ package com.kata;
 
 import java.util.Calendar;
 
-/**
- * Created by jwinters on 2/15/16.
- */
 public class Babysitter {
 
     private static final int PRE_BEDTIME_RATE = 12;
@@ -19,35 +16,30 @@ public class Babysitter {
     private static final boolean ROUND_UP = true;
 
     public static int getRate(Calendar startTime, Calendar endTime, Calendar bedTime) throws Exception {
+        int startHour = getHourOfDay(startTime);
+        int endHour = getHourOfDay(endTime, ROUND_UP);
+        int bedHour = getHourOfDay(bedTime, ROUND_UP);
+        return getRate(startHour, endHour, bedHour);
+    }
 
-        int startHour, endHour, bedHour;
-
-        //Turn our Calendars into integer-based hours for ease of use.
-        startHour = getHourOfDay(startTime);
-        endHour = getHourOfDay(endTime, ROUND_UP);
-        bedHour = getHourOfDay(bedTime, ROUND_UP);
-
+    public static int getRate(int startHour, int endHour, int bedHour) throws Exception {
         int total = 0;
 
-        //Start Time must be after 5:00 PM, but it could also be prior to 4:00 AM.
         if ( startHour < EARLIEST_START_HOUR || startHour > LATEST_END_HOUR )
             throw new Exception("Start time must be after 5:00 PM and before 4:00 AM");
 
-        //End time must be before 4:00 AM
-        if ( endTime.before(startTime) || endHour > LATEST_END_HOUR || endHour < EARLIEST_START_HOUR )
-            throw new Exception("End time must be before start time and between 5:00 PM and 4:00 AM");
-
-        //Edge case where End Time can be in the afternoon when Start Time is in the morning.
-        if ( startHour > endHour )
+        if ( startHour >= LATEST_END_HOUR )
             throw new Exception("Time cannot include midday hours");
 
-        //Edge case where bed time is after midnight
+        if ( endHour <= startHour || endHour > LATEST_END_HOUR || endHour < EARLIEST_START_HOUR ) {
+            throw new Exception("End time must be before start time and between 5:00 PM and 4:00 AM");
+        }
+
         if ( bedHour > MIDNIGHT )
             bedHour = MIDNIGHT;
 
-        for (int hour = startHour; hour < endHour; hour++) {
+        for (int hour = startHour; hour < endHour; hour++)
             total += getHourlyRate(hour, bedHour);
-        }
 
         return total;
     }
@@ -74,6 +66,5 @@ public class Babysitter {
         if (hour < MIDNIGHT)
             return POST_BEDTIME_RATE;
         return POST_MIDNIGHT_RATE;
-
     }
 }
