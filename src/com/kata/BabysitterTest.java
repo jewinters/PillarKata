@@ -1,16 +1,12 @@
 package com.kata;
 
 import junit.framework.*;
-import java.util.GregorianCalendar;
 
 public class BabysitterTest extends TestCase {
 
     public void testStartTimeCannotBeEarlierThanFivePM() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 16, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 2, 4, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 2, 0, 0);
         try {
-            Babysitter.getRate(startTime, endTime, bedTime);
+            Babysitter.getRate(16, 4, 24);
             fail("Should throw an exception if start time is before 5:00 PM");
         } catch (Exception e) {
             assert (e instanceof Exception);
@@ -19,11 +15,8 @@ public class BabysitterTest extends TestCase {
     }
 
     public void testEndTimeCannotBeLaterThanFourAM() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 17, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 2, 5, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 2, 0, 0);
         try {
-            Babysitter.getRate(startTime, endTime, bedTime);
+            Babysitter.getRate(17, 5, 24);
             fail("Should throw an exception if end time is after 4:00 AM");
         } catch (Exception e){
             assert(e instanceof Exception);
@@ -32,12 +25,8 @@ public class BabysitterTest extends TestCase {
     }
 
     public void testEndTimeCannotBeBeforeStartTime() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 17, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 16, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 2, 0, 0);
-
         try {
-            Babysitter.getRate(startTime, endTime, bedTime);
+            Babysitter.getRate(17, 16, 24);
             fail("Should throw an exception if end time is before start time");
         } catch (Exception e){
             assert(e instanceof Exception);
@@ -46,55 +35,32 @@ public class BabysitterTest extends TestCase {
     }
 
     public void testStartToBedTimeReturns12PerHour() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 17, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 18, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 1, 18, 0);
         try {
-            assertEquals(12, Babysitter.getRate(startTime, endTime, bedTime));
+            assertEquals(12, Babysitter.getRate(17, 18, 24));
         } catch (Exception e) {
             fail("Should not throw an exception");
         }
     }
 
     public void testBedTimeToMidnightReturns8PerHour() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 23, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 24, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 1, 23, 0);
         try {
-            assertEquals(8, Babysitter.getRate(startTime, endTime, bedTime));
+            assertEquals(8, Babysitter.getRate(23, 24, 23));
         } catch (Exception e) {
             fail("Should not throw an exception");
         }
     }
 
     public void testMidnightToEndTimeReturns16PerHour() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 0, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 1, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 1, 0, 0);
         try {
-            assertEquals(16, Babysitter.getRate(startTime, endTime, bedTime));
-        } catch (Exception e) {
-            fail("Should not throw an exception");
-        }
-    }
-
-    public void testOnlyPaidForFullHours() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 17, 30);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 2, 3, 30);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 2, 23, 30);
-        try {
-            assertEquals(148, Babysitter.getRate(startTime, endTime, bedTime));
+            assertEquals(16, Babysitter.getRate(24, 1, 24));
         } catch (Exception e) {
             fail("Should not throw an exception");
         }
     }
 
     public void testTimeIncludesDaytimeHoursThrowsEndTimeException() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 4, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 1, 18, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 1, 0, 0);
         try {
-            Babysitter.getRate(startTime, endTime, bedTime);
+            Babysitter.getRate(4, 18, 24);
             fail("Should throw an exception if time includes hours between 4:00 AM and 5:00 PM");
         } catch (Exception e) {
             assert(e instanceof Exception);
@@ -103,11 +69,8 @@ public class BabysitterTest extends TestCase {
     }
 
     public void testBedTimeAfterMidnightReturns16PerHour() {
-        GregorianCalendar startTime = new GregorianCalendar(2016, 0, 1, 24, 0);
-        GregorianCalendar endTime = new GregorianCalendar(2016, 0, 2, 1, 0);
-        GregorianCalendar bedTime = new GregorianCalendar(2016, 0, 2, 1, 0);
         try {
-            assertEquals(16, Babysitter.getRate(startTime, endTime, bedTime));
+            assertEquals(16, Babysitter.getRate(24, 1, 1));
         } catch (Exception e) {
             fail("Should not throw an exception");
         }

@@ -1,7 +1,5 @@
 package com.kata;
 
-import java.util.Calendar;
-
 public class Babysitter {
 
     private static final int PRE_BEDTIME_RATE = 12;
@@ -13,17 +11,11 @@ public class Babysitter {
     private static final int MIDNIGHT = 24;
     private static final int HOURS_IN_DAY = 24;
 
-    private static final boolean ROUND_UP = true;
-
-    public static int getRate(Calendar startTime, Calendar endTime, Calendar bedTime) throws Exception {
-        int startHour = getHourOfDay(startTime);
-        int endHour = getHourOfDay(endTime, ROUND_UP);
-        int bedHour = getHourOfDay(bedTime, ROUND_UP);
-        return getRate(startHour, endHour, bedHour);
-    }
-
-    public static int getRate(int startHour, int endHour, int bedHour) throws Exception {
+    public static int getRate(int startTime, int endTime, int bedTime) throws Exception {
         int total = 0;
+        int startHour = normalizeHour(startTime);
+        int endHour = normalizeHour(endTime);
+        int bedHour = normalizeHour(bedTime);
 
         if ( startHour < EARLIEST_START_HOUR || startHour > LATEST_END_HOUR )
             throw new Exception("Start time must be after 5:00 PM and before 4:00 AM");
@@ -31,9 +23,8 @@ public class Babysitter {
         if ( startHour >= LATEST_END_HOUR )
             throw new Exception("Time cannot include midday hours");
 
-        if ( endHour <= startHour || endHour > LATEST_END_HOUR || endHour < EARLIEST_START_HOUR ) {
+        if ( endHour <= startHour || endHour > LATEST_END_HOUR || endHour < EARLIEST_START_HOUR )
             throw new Exception("End time must be before start time and between 5:00 PM and 4:00 AM");
-        }
 
         if ( bedHour > MIDNIGHT )
             bedHour = MIDNIGHT;
@@ -44,20 +35,8 @@ public class Babysitter {
         return total;
     }
 
-    private static int getHourOfDay(Calendar time) {
-        return getHourOfDay(time, false);
-    }
-
-    private static int getHourOfDay(Calendar time, Boolean roundUp) {
-        int hourOfDay = time.get(Calendar.HOUR_OF_DAY);
-
-        if ( time.get(Calendar.HOUR_OF_DAY) <= (LATEST_END_HOUR - HOURS_IN_DAY) )
-            hourOfDay += HOURS_IN_DAY;
-
-        if ( roundUp && time.get(Calendar.MINUTE) > 0 )
-            hourOfDay++;
-
-        return hourOfDay;
+    private static int normalizeHour(int hour) {
+        return hour > LATEST_END_HOUR - HOURS_IN_DAY ? hour : hour + HOURS_IN_DAY;
     }
 
     private static int getHourlyRate(int hour, int bedHour) {
