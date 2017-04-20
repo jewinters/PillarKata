@@ -34,30 +34,6 @@ public class BabysitterTest extends TestCase {
         }
     }
 
-    public void testStartToBedTimeReturns12PerHour() {
-        try {
-            assertEquals(12, Babysitter.getRate(17, 18, 24));
-        } catch (Exception e) {
-            fail("Should not throw an exception");
-        }
-    }
-
-    public void testBedTimeToMidnightReturns8PerHour() {
-        try {
-            assertEquals(8, Babysitter.getRate(23, 24, 23));
-        } catch (Exception e) {
-            fail("Should not throw an exception");
-        }
-    }
-
-    public void testMidnightToEndTimeReturns16PerHour() {
-        try {
-            assertEquals(16, Babysitter.getRate(24, 1, 24));
-        } catch (Exception e) {
-            fail("Should not throw an exception");
-        }
-    }
-
     public void testTimeIncludesDaytimeHoursThrowsEndTimeException() {
         try {
             Babysitter.getRate(4, 18, 24);
@@ -68,11 +44,19 @@ public class BabysitterTest extends TestCase {
         }
     }
 
-    public void testBedTimeAfterMidnightReturns16PerHour() {
-        try {
-            assertEquals(16, Babysitter.getRate(24, 1, 1));
-        } catch (Exception e) {
-            fail("Should not throw an exception");
-        }
+    public void testStartToBedTimeReturns12PerHour() throws Exception {
+        assertEquals(12, Babysitter.getRate(17, 18, 24));
+    }
+
+    public void testBedTimeToMidnightReturns8PerHour() throws Exception {
+        assertEquals(8, Babysitter.getRate(23, 24, 23));
+    }
+
+    public void testMidnightToEndTimeReturns16PerHour() throws Exception {
+        assertEquals(16, Babysitter.getRate(24, 1, 24));
+    }
+
+    public void testBedTimeAfterMidnightReturns16PerHour() throws Exception {
+        assertEquals(16, Babysitter.getRate(24, 1, 1));
     }
 }
