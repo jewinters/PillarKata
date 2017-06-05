@@ -9,8 +9,7 @@ public class BabysitterTest extends TestCase {
             Babysitter.getRate(16, 4, 24);
             fail("Should throw an exception if start time is before 5:00 PM");
         } catch (Exception e) {
-            assert (e instanceof Exception);
-            assertEquals("Start time must be after 5:00 PM and before 4:00 AM", e.getMessage());
+            assertEquals(Babysitter.START_TIME_VALIDATION_ERROR_MESSAGE, e.getMessage());
         }
     }
 
@@ -19,8 +18,7 @@ public class BabysitterTest extends TestCase {
             Babysitter.getRate(17, 5, 24);
             fail("Should throw an exception if end time is after 4:00 AM");
         } catch (Exception e){
-            assert(e instanceof Exception);
-            assertEquals("End time must be before start time and between 5:00 PM and 4:00 AM", e.getMessage());
+            assertEquals(Babysitter.END_TIME_VALIDATION_ERROR_MESSAGE, e.getMessage());
         }
     }
 
@@ -29,8 +27,7 @@ public class BabysitterTest extends TestCase {
             Babysitter.getRate(17, 16, 24);
             fail("Should throw an exception if end time is before start time");
         } catch (Exception e){
-            assert(e instanceof Exception);
-            assertEquals("End time must be before start time and between 5:00 PM and 4:00 AM", e.getMessage());
+            assertEquals(Babysitter.END_TIME_VALIDATION_ERROR_MESSAGE, e.getMessage());
         }
     }
 
@@ -39,8 +36,7 @@ public class BabysitterTest extends TestCase {
             Babysitter.getRate(4, 18, 24);
             fail("Should throw an exception if time includes hours between 4:00 AM and 5:00 PM");
         } catch (Exception e) {
-            assert(e instanceof Exception);
-            assertEquals("Time cannot include midday hours", e.getMessage());
+            assertEquals(Babysitter.MIDDAY_HOUR_VALIDATION_ERROR_MESSAGE, e.getMessage());
         }
     }
 
